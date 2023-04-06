@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Перевод единиц измерения</title>
+
+</head>
+
+<body>
+  <form>
+    <input id="number" type="number" value="1" />
+    <select name="units1" id="select1">
+      <option value="1">МПа</option>
+      <option value="2">кг/см2</option>
+      <option value="3">Bar</option>
+    </select>
+    <span> = </span>
+    <span id="info"></span>
+    <select name="units2" id="select2">
+      <option value="1">МПа</option>
+      <option value="1.097">кг/см2</option>
+      <option value="3">Bar</option>
+    </select>
+  </form>
+
+  <script>
+    var a = document.getElementById("select1");
+    var b = document.getElementById("select2");
+    var c = document.getElementById("number");
+    function onChange() {
+      var value1 = a.value;
+      var value2 = b.value;
+      var value3 = c.value;
+
+      document.getElementById('info').innerHTML = value1 * value2 * value3;
+    }
+    a.onchange = onChange;
+    b.onchange = onChange;
+    c.onchange = onChange;
+    onChange();
+
+  </script>
+
+</body>
