@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+
+
+  <style>
+    #app input {
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 5px;
+      margin: 5px 0;
+    }
+
+    #app table {
+      width: 100%;
+    }
+
+    #app table td,
+    #app table th {
+      padding: 5px;
+      text-align: left;
+    }
+
+    #app table td.value {
+      word-break: break-word;
+    }
+
+    #app tbody tr:nth-child(odd) {
+      background: #ddd;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <form id="myForm">
+    Сумма кредита
+    <br>
+    <input type="number" name="creditAmount" value="1200000">
+    <br>
+    Годовой процент
+    <br>
+    <input type="number" name="percent" value="10" max="100">
+    <br>
+    Срок кредитования
+    <br>
+    <input type="number" name="creditPeriod" value="48">
+    <br>
+    <input type="button" value="Send Me!" onclick="btnClick();">
+  </form>
+
+
+
+  <div id="app">
+    <table id="list-table">
+      <thead>
+        <tr>
+          <th>дата</th>
+          <th>остаток основного долга</th>
+          <th>сумма платежа</th>
+          <th>погашение основного долга</th>
+          <th>погашение процентов</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- tr добавлять сюда -->
+      </tbody>
+    </table>
+
+
+  </div>
+</body>
+<script>
+
+  /*   let timetable =
+      [
+        {
+          date: 'дата1',
+          principalDebt: 'остаток основного долга1',
+          paymentAmount: 'сумма платежа1',
+          repaymentPrincipalDebt: 'погашение основного долга1',
+          repaymentOfInterest: 'погашение процентов1'
+        },
+        {
+          date: 'дата2',
+          principalDebt: 'остаток основного долга2',
+          paymentAmount: 'сумма платежа2',
+          repaymentPrincipalDebt: 'погашение основного долга2',
+          repaymentOfInterest: 'погашение процентов2'
+        },
+        {
+          date: 'дата3',
+          principalDebt: 'остаток основного долга3',
+          paymentAmount: 'сумма платежа3',
+          repaymentPrincipalDebt: 'погашение основного долга3',
+          repaymentOfInterest: 'погашение процентов3'
+        }
+      ]; */
+  function btnClick() {
+    let creditAmount = myForm.creditAmount.value;
+    let percent = myForm.percent.value;
+    let creditPeriod = myForm.creditPeriod.value;//в месяцах
+
+    console.log("Сумма кредита " + creditAmount + " процент " + percent + " срок кредитования " + creditPeriod);
+
+    let timetable = [];//массив строк платежей
+
+    for (let i = 1; i <= creditPeriod; i++) {
+
+      let payments = {};//создали строку платежа
+      payments.date = i;
+      payments.principalDebt = 11;
+      payments.paymentAmount = 12;
+      payments.repaymentPrincipalDebt = 13;
+      payments.repaymentOfInterest = 14;
+
+      //console.log("Объект " + JSON.stringify(payments));
+
+      timetable.push(payments);
+
+    }
+    console.log("Объект " + JSON.stringify(timetable));
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    const listTable = document.querySelector('#list-table tbody');
+
+    updateTable();//перерисовывает таблицу заново
+
+    function updateTable() {
+      const fragment = document.createDocumentFragment();//Вставить пачку узлов единовременно поможет DocumentFragment. Это особенный кросс-браузерный DOM-объект, который похож на обычный DOM-узел, но им не является.
+      let total = 0;
+
+      listTable.innerHTML = '';//очищаем содержимое таблицы
+
+      for (let i = 0; i < timetable.length; i++) {
+
+        total++;
+        const tr = document.createElement('tr');       // создаем tr
+
+        const valueDate = document.createElement('td');   // создаем td для даты
+        const valuePrincipalDebt = document.createElement('td');  // создаем td для остаток основного долга
+        const valuePaymentAmount = document.createElement('td'); // создаем td для сумма платежа
+        const valueRepaymentPrincipalDebt = document.createElement('td');  // создаем td для погашение основного долга
+        const valueRepaymentOfInterest = document.createElement('td'); // создаем td для погашение процентов
+
+
+        valueDate.textContent = timetable[i].date; // в ячейку имени td вносим значение
+        valuePrincipalDebt.textContent = timetable[i].principalDebt; // в ячейку значения td вносим значение
+        valuePaymentAmount.textContent = timetable[i].paymentAmount; // в ячейку значения td вносим значение
+        valueRepaymentPrincipalDebt.textContent = timetable[i].repaymentPrincipalDebt; // в ячейку значения td вносим значение
+        valueRepaymentOfInterest.textContent = timetable[i].repaymentOfInterest; // в ячейку значения td вносим значение
+
+        tr.append(valueDate, valuePrincipalDebt, valuePaymentAmount, valueRepaymentPrincipalDebt, valueRepaymentOfInterest); //добавляем в строку tr все td
+        fragment.append(tr); // в фрагмент вставляем строку tr
+        //listTable.append(fragment);
+      }
+
+      if (total) {// если выполняется 
+        listTable.parentNode.classList.remove('hidden');//удаляем класс hidden
+        listTable.append(fragment);//вставляем фрагмент
+      } else {
+        listTable.parentNode.classList.add('hidden');//иначе добавляем класс hidden
+      }
+
+    }
+  }
+  // проверяем работу гит
+</script>
+
+</html>

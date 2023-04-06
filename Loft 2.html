@@ -1,0 +1,216 @@
+<html>
+
+<HEAD>
+
+</HEAD>
+
+<body>
+
+  <script>
+    function returnFirstArgument(a) {
+      var result = a;
+      return console.log(result);
+    }
+    returnFirstArgument(10);
+
+
+
+    function sumWithDefaults(a, b = 100) {
+      var result = a + b;
+      return console.log(result);
+    }
+    sumWithDefaults(12);
+
+
+
+    function returnFnResult(fn) {
+      return fn();
+    };
+
+
+
+    function returnCounter(x = 0) {
+      return function F() {
+        return ++x;
+      }
+    }
+
+    var f = returnCounter();
+    console.log(f()); // выведет 1
+    console.log(f()); // выведет 2
+
+    f = returnCounter(10);
+    console.log(f()); // выведет 11
+    console.log(f()); // выведет 12
+    console.log(f()); // выведет 13
+
+
+    /*
+     Задание 2:
+    
+     Напишите аналог встроенного метода map для работы с массивами
+     Посмотрите как работает map и повторите это поведение для массива, который будет передан в параметре array
+    
+     Пример:
+       map([1, 2, 3], (el) => el ** 2) // [1, 4, 9]
+     */
+
+    function map(array, fn) {
+      var newArray = [];
+      for (var i = 0; i < array.length; i++) {
+        newArray.push(fn(array[i], i, array));
+      }
+      console.log(newArray);
+      return newArray;
+    }
+
+    map([1, 2, 3], (el) => el ** 2) // [1, 4, 9]
+
+    /*
+    Задание 3:
+   
+    Напишите аналог встроенного метода reduce для работы с массивами
+    Посмотрите как работает reduce и повторите это поведение для массива, который будет передан в параметре array
+   
+    Пример:
+      reduce([1, 2, 3], (all, current) => all + current) // 6
+    */
+    function reduce(array, fn, initial) {
+      var value = initial || array[0],
+        index = initial ? 0 : 1;
+
+      for (; index < array.length; index++) {
+        value = fn(value, array[index], index, array);
+      }
+
+      console.log(value);
+      return value;
+    }
+
+    reduce([1, 2, 3], (all, current) => all + current) // 6
+
+
+
+
+    /*
+    3 неделя
+     Задание 1:
+    
+     1.1: Функция должна создать элемент с тегом DIV
+    
+     1.2: В созданный элемент необходимо поместить текст, переданный в параметр text
+    
+     Пример:
+       createDivWithText('loftschool') // создаст элемент div, поместит в него 'loftschool' и вернет созданный элемент
+     */
+
+    function createDivWithText(text) {
+      let elDiv = document.createElement('div');
+      document.body.append(elDiv);
+      elDiv.innerHTML = text;
+      return elDiv;
+    }
+    createDivWithText('loftschool');
+
+
+
+    /*
+     Задание 3:
+    
+     3.1: Функция должна перебрать все дочерние элементы узла, переданного в параметре where
+    
+     3.2: Функция должна вернуть массив, состоящий из тех дочерних элементов следующим соседом которых является элемент с тегом P
+    
+     Пример:
+       Представим, что есть разметка:
+       <body>
+          <div></div>
+          <p></p>
+          <a></a>
+          <span></span>
+          <p></p>
+       </body>
+    
+       findAllPSiblings(document.body) // функция должна вернуть массив с элементами div и span т.к. следующим соседом этих элементов является элемент с тегом P
+     */
+  </script>
+  <div>DIV</div>
+  <p>PPPPP</p>
+  <a>AAAA</a>
+  <span>SPAN</span>
+  <p>PPPP</p>
+  <button>Нажми меня нежно.</button>
+  <p>А здесь нет обработчиков.</p>
+
+  <script>
+    function findAllPSiblings(where) {
+      var arrayP = [];
+      for (let i = 0; i < where.children.length; i++) {
+        //console.log(i);
+        //console.log(where.children[i]);
+        if (where.children[i].nodeName == 'P') {
+
+          arrayP.push(where.children[i - 1].nodeName);
+        }
+      }
+      //console.log(arrayP);
+      return arrayP;
+    }
+    findAllPSiblings(document.body);
+
+
+
+    // функция должна вернуть массив с элементами 
+    function findError(where) {
+      const result = [];
+
+      for (const child of where.children) {
+        //console.log(where.child.innerHTML);
+
+        result.push(child.innerHTML);
+      }
+
+      return result;
+      console.log(result);
+    }
+    findError(document.body)
+
+
+    /*
+     Задание 7:
+    
+     Функция должна добавить такой обработчик кликов к элементу target,
+     который сработает только один раз и удалится (перестанет срабатывать для последующих кликов по указанному элементу)
+    
+     Пример:
+         // добавит такой обработчик кликов для указанного элемента, который вызовется только один раз и затем удалится
+     */
+    function once(target, fn) {
+      target.addEventListener('click', cb);
+      function cb() {
+        fn();
+        target.removeEventListener('click', cb);
+      }
+    }
+    once(document.querySelector('button'), () => console.log('обработчик выполнился!'))
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

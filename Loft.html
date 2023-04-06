@@ -1,0 +1,156 @@
+<html>
+
+<head></head>
+
+<body>
+  <script>
+    for (var i = 0; i < 3; i++) {
+      console.log(i);
+    }
+
+
+
+    function sum(a, b) {
+      return (a + b);
+    }
+    console.log(sum(5, 3));
+
+
+
+
+    var someVar = 20;
+    var someOtherVar = 30;
+
+    function summa(a, b) {
+      var total = a + b + someVar + someOtherVar;
+      return total;
+    }
+
+    var total = summa(2, 3);
+
+    console.log(total);
+
+    var v;
+    if (10 > 100) {
+      v = 10;
+
+    }
+    console.log(v); //undefined
+
+    for (var i = 0; i < 3; i++) {
+
+    }
+    console.log(i);
+
+    var summ = (n, m) => {
+      return n + m
+    };
+    var summNM = summ(11, 22);
+
+    console.log(summNM);
+
+
+    var ar = [1, 2, 3, 4];
+    var newArray = ar.map(number => number * number);
+    console.log(ar);
+    console.log(newArray);
+
+
+    console.log("про let");
+
+
+
+    if (10 > 1) {
+      let x = 10;
+      console.log(x);
+
+    }
+    //console.log(x); // ошибка тк let не всплывает
+
+
+    console.log("про const");
+
+
+    const a = 10;
+    console.log(a);
+    //a = 200; // ошибка тк const нельзя менять
+    //console.log(a); // ошибка тк const нельзя менять
+
+
+
+    console.log("объекты");
+
+
+    var obj = {
+      name: 'Иван',
+      lastName: "Петров",
+      old: 40,
+      work: "programmer"
+    };
+
+    console.log(obj.name);
+    console.log(obj.lastName);
+    console.log(obj.old);
+
+
+    console.log(obj['work']);
+
+    obj.name = "Дмитрий";//изменение свойства
+
+    obj.staj = "25 лет";// добавление нового свойства
+    console.log(obj.staj);
+
+    console.log(obj);
+
+    console.log("про массивы");
+
+
+    var array = ["Сергей", "Иван", "Андрей"];
+
+    console.log(array[0]);
+    console.log(array[1]);
+    console.log(array[2]);
+
+    array[1] = "Роман";
+
+    console.log(array[0]);
+    console.log(array[1]);
+    console.log(array[2]);
+
+    console.log(array.length);
+
+    array.push("Николай");//добавляем элемент в массив в конец
+
+    console.log(array.length);
+
+    for (let i = 0; i < array.length; i++) {
+      console.log(array[i]);
+    }
+
+    var array = [
+      {
+        name: "Сергей1",
+        lastName: "Смирнов1"
+      },
+
+      {
+        name: "Сергей2",
+        lastName: "Смирнов2"
+      },
+
+      {
+        name: "Сергей3",
+        lastName: "Смирнов3"
+      }];
+
+
+    for (let i = 0; i < array.length; i++) {
+      let element = array[i].lastName;
+
+      console.log(element);
+    }
+
+  </script>
+</body>
+
+</html>
