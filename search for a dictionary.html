@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>поиск для словаря</title>
+
+
+</head>
+
+<body>
+
+
+
+    <script>
+        const animals = ["собака", "кошка", "лошадь", "утка", "корова"];
+
+        /**
+         * Filter array items based on search criteria (query) 
+         * Фильтровать элементы массива на основе критериев поиска (запроса)
+         */
+        function filterItems(arr, query) {
+            return arr.filter((el) => el.toLowerCase().includes(query.toLowerCase()));
+        }
+
+        console.log(filterItems(animals, "ка")); // ['собака', 'кошка', 'утка']
+        console.log(filterItems(animals, "ош")); // ['кошка', 'лошадь']
+
+    </script>
+
+</body>
