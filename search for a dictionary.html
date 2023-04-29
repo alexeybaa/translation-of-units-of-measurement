@@ -6,27 +6,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>поиск для словаря</title>
-
-
 </head>
 
 <body>
 
+    <form>
+        <input id="number" class="resized" value="" list="character">
+        <datalist id="character">
+        </datalist>
+
+        <span id="info"></span>
+        <br />
+        <!-- <span id="result"></span> -->
+    </form>
 
 
     <script>
-        const animals = ["собака", "кошка", "лошадь", "утка", "корова"];
+        const animals = ["собака", "кошка", "лошадь", "утка", "корова", "курица", "овца"];
+        const input = document.querySelector("input");
 
-        /**
-         * Filter array items based on search criteria (query) 
-         * Фильтровать элементы массива на основе критериев поиска (запроса)
-         */
-        function filterItems(arr, query) {
-            return arr.filter((el) => el.toLowerCase().includes(query.toLowerCase()));
+        input.addEventListener("input", updateValue);
+
+        function updateValue(e) {
+            var value3 = e.target.value;
+            document.getElementById('info').innerHTML = value3;
+
+            /*
+              * Filter array items based on search criteria (query)
+              * Фильтровать элементы массива на основе критериев поиска (запроса)
+              */
+            function filterItems(arr, query) {
+                return arr.filter((el) => el.toLowerCase().includes(query.toLowerCase()));
+            }
+            const newAnimals = filterItems(animals, value3)
+
+            //document.getElementById('result').innerHTML = newAnimals;
+
+        }
+        const newOptions = document.getElementById('character');
+        for (var i = 0; i < animals.length; i++) {
+            let opt = animals[i];
+            let el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            newOptions.appendChild(el);
         }
 
-        console.log(filterItems(animals, "ка")); // ['собака', 'кошка', 'утка']
-        console.log(filterItems(animals, "ош")); // ['кошка', 'лошадь']
 
     </script>
 
